@@ -1,0 +1,130 @@
+<style>
+/*
+ * Core accordion
+ * Wrap Rock's accordion shortcode with .core-accordion so these styles
+ * do not affect unrelated Rock panels.
+ */
+
+.core-accordion {
+  color: inherit;
+}
+
+.core-accordion .panel-group {
+  margin-bottom: 0;
+}
+
+.core-accordion .panel-group > .panel {
+  margin-bottom: 0;
+  color: inherit;
+  background-color: transparent;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.core-accordion .panel-group > .panel + .panel {
+  margin-top: 0;
+}
+
+.core-accordion .panel-default > .panel-heading {
+  padding: 0;
+  color: inherit;
+  background-color: transparent;
+  border: 0;
+}
+
+.core-accordion .panel-title {
+  font-size: 1.5rem;
+  color: inherit;
+}
+
+.core-accordion .panel-title > a {
+  display: block;
+  padding: 15px;
+  color: inherit;
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.core-accordion .panel-title > a:hover,
+.core-accordion .panel-title > a:focus,
+.core-accordion .panel-title > a:active,
+.core-accordion .panel-title > a:visited {
+  color: inherit;
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.core-accordion .panel-title > a:focus,
+.core-accordion .panel-title > a:active,
+.core-accordion .panel-title > a:focus-visible {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+.core-accordion .accordion-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.core-accordion .accordion-title {
+  min-width: 0;
+  color: inherit;
+}
+
+.core-accordion .accordion-icon {
+  flex: 0 0 auto;
+  color: inherit;
+}
+
+.core-accordion .toggle-icon {
+  display: block;
+  width: 1.25em;
+  height: 1.25em;
+  transition: transform 0.3s ease;
+}
+
+.core-accordion .panel-title > a[aria-expanded="true"] .toggle-icon {
+  transform: rotate(180deg);
+}
+
+.core-accordion .panel-title > a[aria-expanded="false"] .toggle-icon {
+  transform: rotate(0deg);
+}
+
+.core-accordion .panel-group .panel-heading + .panel-collapse > .panel-body,
+.core-accordion .panel-group .panel-heading + .panel-collapse > .list-group {
+  color: inherit;
+  background-color: transparent;
+  border-top: 0;
+}
+
+.core-accordion .panel-body {
+  padding-left: 20px;
+}
+</style>
+
+<div class="core-accordion">
+
+  {[ accordion firstopen:'false' ]}
+
+  {% for item in Items %}
+    {%- assign faqTitle = item.Title | Escape -%}
+    {%- assign faqContent = item.Content -%}
+
+    [[ item title:'<span class="accordion-header"><span class="accordion-title">{{ faqTitle }}</span><span class="accordion-icon"><svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6l6 -6"></path></svg></span></span>' ]]
+      {{ faqContent }}
+    [[ enditem ]]
+
+  {% endfor %}
+
+  {[ endaccordion ]}
+
+</div>
